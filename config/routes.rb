@@ -1,9 +1,12 @@
 Games4trade::Application.routes.draw do
   get "pages/home"
 
+#  match '/',  :to => 'pages#home'
   get "pages/contact"
 
   resources :users
+
+  match '/signup',  :to => 'users#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
