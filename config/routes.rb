@@ -1,5 +1,21 @@
 Games4trade::Application.routes.draw do
 
+  get "sessions/new"
+
+  get "sessions/create"
+
+  get "sessions/destroy"
+
+  get "session/new"
+
+  get "session/create"
+
+  get "session/destroy"
+
+  get "session/signin"
+
+  get "session/signout"
+
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
@@ -9,6 +25,9 @@ Games4trade::Application.routes.draw do
   resources :users
 
   match '/signup',  :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/sessions',  :to => 'sessions#create'
+  match '/signout', :to => 'sessions#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
