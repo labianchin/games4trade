@@ -30,8 +30,17 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem 'will_paginate'
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
 gem 'gravatar_image_tag'
+
+
+group :development do
+  gem 'rspec-rails'
+  gem 'annotate'
+  gem 'faker'
+end
