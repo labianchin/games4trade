@@ -1,6 +1,4 @@
-<h1>Listing users</h1>
-
-<h1>All users</h1>
+<h1><%=t "All users"%></h1>
 
 <%= will_paginate %>
 
@@ -10,8 +8,8 @@
       <%= gravatar_for user, :size => 30 %>
       <%= link_to user.name, user %>
       <%= user.email %>
-      <% if true %>
-	  | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
+      <% if current_user.admin? %>
+	  | <%= link_to t("delete"), user, :method => :delete, :confirm => "You sure?",
 		                            :title => "Delete #{user.name}" %>
 	  <% end %>
     </li>

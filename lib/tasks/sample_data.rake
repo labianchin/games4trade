@@ -25,6 +25,10 @@ namespace :db do
                          :password => "foobar",
                          :password_confirmation => "foobar",
                          :admin => true)
+ 	Game.create!(:name => "Crysis 2")
+ 	Game.create!(:name => "Portal 2")
+ 	Game.create!(:name => "Call of Duty: Black Ops First Strike")
+ 	Game.create!(:name => "Call of Duty: Black Ops")
     
   end
 end

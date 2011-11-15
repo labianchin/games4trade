@@ -1,0 +1,37 @@
+<h1><%=t "All games"%></h1>
+
+<%= will_paginate %>
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+	<% if signed_in? && current_user.admin? %>
+    <th></th>
+    <th></th>
+	<% end %>
+  </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.name %></td>
+    <td><%= game.plataform %></td>
+	<td><%= game.media_count %><%= game.media %></td>
+    <td><%= game.genre %></td>
+    <td><%= link_to t('Show'), game %></td>
+	<% if signed_in? && current_user.admin? %>
+    <td><%= link_to t('Edit'), edit_game_path(game) %></td>
+    <td><%= link_to t('Destroy'), game, confirm: 'Are you sure?', method: :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate %>
+<br />
+
+<% if signed_in? && current_user.admin? %>
+<%= link_to t('New Game'), new_game_path %>
+<% end %>

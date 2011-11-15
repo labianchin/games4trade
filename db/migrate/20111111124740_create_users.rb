@@ -17,8 +17,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string :street
       t.string :number
       t.string :complement
+      t.string :salt
 
       t.timestamps
     end
+    add_column :users, :admin, :boolean, :default => false
   end
 end

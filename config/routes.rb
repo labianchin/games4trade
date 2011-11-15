@@ -23,6 +23,7 @@ Games4trade::Application.routes.draw do
   root :to => 'pages#home'
 
   resources :users
+  resources :games
 
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'

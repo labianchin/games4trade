@@ -1,0 +1,33 @@
+<h1><%=t "New game" %></h1>
+
+<% flash.each do |key, value| %>
+  <div class="flash <%= key %>"><%= value %></div>
+<% end %> 
+
+<%= form_for(@game) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :plataform %><br />
+    <%= f.text_field :plataform %>
+  </div>
+  <div class="field">
+    <%= f.label :media %><br />
+    <%= f.text_field :media %>
+  </div>
+  <div class="field">
+    <%= f.label :media_count, "Confirmation" %><br />
+    <%= f.text_field :media_count %>
+  </div>
+  <div class="field">
+    <%= f.label :genre %><br />
+    <%= f.text_field :genre %>
+  </div>
+  <div class="actions">
+    <%= f.submit(t("Submit")) %>
+  </div>
+<% end %>
+
+<%= link_to t('Back'), games_path %>

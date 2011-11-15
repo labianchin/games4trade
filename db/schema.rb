@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114154339) do
+ActiveRecord::Schema.define(:version => 20111115142419) do
+
+  create_table "games", :force => true do |t|
+    t.string   "name"
+    t.string   "plataform"
+    t.string   "media"
+    t.string   "media_count"
+    t.string   "genre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -30,9 +40,9 @@ ActiveRecord::Schema.define(:version => 20111114154339) do
     t.string   "street"
     t.string   "number"
     t.string   "complement"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "salt"
     t.boolean  "admin",              :default => false
   end
 
