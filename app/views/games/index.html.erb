@@ -1,5 +1,12 @@
 <h1><%=t "All games"%></h1>
 
+<%= form_tag games_path, :method => 'get', :id => "games_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
 <%= will_paginate %>
 <table>
   <tr>
@@ -18,7 +25,7 @@
   <tr>
     <td><%= game.name %></td>
     <td><%= game.plataform %></td>
-	<td><%= game.media_count %><%= game.media %></td>
+	<td><%= game.media_count %><%= game.media_type %></td>
     <td><%= game.genre %></td>
     <td><%= link_to t('Show'), game %></td>
 	<% if signed_in? && current_user.admin? %>

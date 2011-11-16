@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(:version => 20111115142419) do
   create_table "games", :force => true do |t|
     t.string   "name"
     t.string   "plataform"
-    t.string   "media"
-    t.string   "media_count"
+    t.string   "media_type"
+    t.integer  "media_count"
     t.string   "genre"
     t.datetime "created_at"
     t.datetime "updated_at"

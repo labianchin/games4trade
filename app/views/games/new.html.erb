@@ -11,23 +11,23 @@
   </div>
   <div class="field">
     <%= f.label :plataform %><br />
-    <%= f.text_field :plataform %>
+    <%= f.select(:plataform, ["Windows x86", "Windows AMD64", "Playstation 3", "Playstation 2", "Xbox 360", "Wii", "Linux", "MaxOS"]) %>
   </div>
   <div class="field">
-    <%= f.label :media %><br />
-    <%= f.text_field :media %>
+    <%= f.label :media_type %><br />
+    <%= f.select(:media_type, ["CD", "DVD", "Pendrive", "Download"]) %>
   </div>
   <div class="field">
-    <%= f.label :media_count, "Confirmation" %><br />
-    <%= f.text_field :media_count %>
+    <%= f.label :media_count %><br />
+    <%= f.text_field :media_count, {:type => :number} %>
   </div>
   <div class="field">
     <%= f.label :genre %><br />
-    <%= f.text_field :genre %>
+    <%= f.select(:genre, ["Action", "Arcade", "FPS", "RPG", "RTS", "Horror", "MMoRPG", "Casual"]) %>
   </div>
   <div class="actions">
-    <%= f.submit(t("Submit")) %>
+    <%= f.submit "Submit" %>
   </div>
 <% end %>
 
-<%= link_to t('Back'), games_path %>
+<%= link_to 'Back', games_path %>
