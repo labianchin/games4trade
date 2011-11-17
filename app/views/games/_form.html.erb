@@ -1,3 +1,7 @@
+<% flash.each do |key, value| %>
+  <div class="flash <%= key %>"><%= value %></div>
+<% end %> 
+
 <%= form_for(@game) do |f| %>
   <% if @game.errors.any? %>
     <div id="error_explanation">
@@ -10,6 +14,26 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+	<%= f.label :name %><br />
+	<%= f.text_field :name %>
+  </div>
+  <div class="field">
+	<%= f.label :plataform %><br />
+	<%= f.select(:plataform, ["Windows x86", "Windows AMD64", "Playstation 3", "Playstation 2", "Xbox 360", "Wii", "Linux", "MaxOS"]) %>
+  </div>
+  <div class="field">
+	<%= f.label :media_type %><br />
+	<%= f.select(:media_type, ["CD", "DVD", "Pendrive", "Download"]) %>
+  </div>
+  <div class="field">
+	<%= f.label :media_count %><br />
+	<%= f.text_field :media_count, {:type => :number} %>
+  </div>
+  <div class="field">
+	<%= f.label :genre %><br />
+	<%= f.select(:genre, ["Action", "Arcade", "FPS", "RPG", "RTS", "Horror", "MMoRPG", "Casual"]) %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

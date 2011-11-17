@@ -1,5 +1,22 @@
 <p id="notice"><%= notice %></p>
 
+<h2>
+  <%=t :name %>:
+  <%= @game.name %></br>
+  
+  
+  <%=t :plataform %>:
+  <%= @game.plataform %></br>
+  
+  <%=t :media_type %>:
+  <%= @game.media_count %> <%= @game.media_type %></br>
+  
+  <%=t :genre %>:
+  <%= @game.genre %></br>
 
+</h2>
+
+<% if signed_in? && current_user.admin? %>
 <%= link_to 'Edit', edit_game_path(@game) %> |
+<% end %>
 <%= link_to 'Back', games_path %>

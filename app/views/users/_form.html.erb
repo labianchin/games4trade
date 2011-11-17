@@ -1,4 +1,9 @@
+<% flash.each do |key, value| %>
+  <div class="flash <%= key %>"><%= value %></div>
+<% end %> 
+
 <%= form_for(@user) do |f| %>
+
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -11,21 +16,28 @@
     </div>
   <% end %>
 
+	<fieldset>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
   </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmation" %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  </fieldset>
+  <fieldset>
   <div class="field">
     <%= f.label :nickname %><br />
     <%= f.text_field :nickname %>
-  </div>
-  <div class="field">
-    <%= f.label :encrypted_password %><br />
-    <%= f.text_field :encrypted_password %>
   </div>
   <div class="field">
     <%= f.label :rg %><br />
@@ -37,11 +49,11 @@
   </div>
   <div class="field">
     <%= f.label :birth_date %><br />
-    <%= f.date_select :birth_date %>
+    <%= f.text_field :birth_date %>
   </div>
   <div class="field">
     <%= f.label :gender %><br />
-    <%= f.number_field :gender %>
+    <%= f.text_field :gender %>
   </div>
   <div class="field">
     <%= f.label :phone %><br />
@@ -74,8 +86,9 @@
   <div class="field">
     <%= f.label :complement %><br />
     <%= f.text_field :complement %>
-  </div>
+  </div>  
+  </fieldset>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit(t("Submit")) %>
   </div>
 <% end %>
