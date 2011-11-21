@@ -25,7 +25,7 @@
   <tr>
     <td><%= game.name %></td>
     <td><%= game.plataform %></td>
-	<td><%= game.media_count %><%= game.media_type %></td>
+	<td><%= game.media_count %> <%= game.media_type %></td>
     <td><%= game.genre %></td>
     <td><%= link_to t('Show'), game %></td>
 	<% if signed_in? && current_user.admin? %>
