@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115142419) do
+ActiveRecord::Schema.define(:version => 20111123003703) do
 
   create_table "games", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,30 @@ ActiveRecord::Schema.define(:version => 20111115142419) do
     t.string   "media_type"
     t.integer  "media_count"
     t.string   "genre"
+    t.string   "review"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "repository_items", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.string   "description"
+    t.string   "review"
+    t.integer  "grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "repository_items", ["game_id"], :name => "index_repository_items_on_game_id"
+  add_index "repository_items", ["user_id", "game_id"], :name => "index_repository_items_on_user_id_and_game_id", :unique => true
+  add_index "repository_items", ["user_id"], :name => "index_repository_items_on_user_id"
+
+  create_table "reputations", :force => true do |t|
+    t.integer  "reputer_id"
+    t.integer  "reputed_id"
+    t.string   "review"
+    t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,5 +69,16 @@ ActiveRecord::Schema.define(:version => 20111115142419) do
     t.datetime "updated_at"
     t.boolean  "admin",              :default => false
   end
+
+  create_table "wishlist_items", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wishlist_items", ["game_id"], :name => "index_wishlist_items_on_game_id"
+  add_index "wishlist_items", ["user_id", "game_id"], :name => "index_wishlist_items_on_user_id_and_game_id", :unique => true
+  add_index "wishlist_items", ["user_id"], :name => "index_wishlist_items_on_user_id"
 
 end

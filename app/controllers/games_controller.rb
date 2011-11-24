@@ -5,6 +5,7 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = Game.search(params[:search]).paginate(:page => params[:page])#:per_page => 5,   .order(sort_column + " " + sort_direction)
+    @h1title = t("All games")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @games }

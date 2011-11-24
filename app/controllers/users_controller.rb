@@ -86,4 +86,21 @@ class UsersController < ApplicationController
     end
   end
   
+  
+  def wishlist
+    @title = t("Wishlist")
+    @h1title = t("Wishlist games")
+    @user = User.find(params[:id])
+    @games = @user.wishlist_games.paginate(:page => params[:page])
+    render 'games/index'
+  end
+
+  def repository
+    @title = t("Repository")
+    @h1title = t("Repository games")
+    @user = User.find(params[:id])
+    @games = @user.repository_games.paginate(:page => params[:page])
+    render 'games/index'
+  end
+  
 end

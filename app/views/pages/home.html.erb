@@ -4,4 +4,13 @@
   Welcome to games4trade!!!!!
 </p>
 
+<% if signed_in? %>
+
+<%= render 'shared/user_info' %>
+<%= render 'shared/stats' %>
+
+<% else %>
 <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+
+<% end %>
+

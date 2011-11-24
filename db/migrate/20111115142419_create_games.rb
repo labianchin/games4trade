@@ -6,6 +6,7 @@ class CreateGames < ActiveRecord::Migration
       t.string :media_type
       t.integer :media_count
       t.string :genre
+      t.string :review
 
       t.timestamps
     end

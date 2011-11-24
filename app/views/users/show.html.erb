@@ -16,3 +16,18 @@
 
 </h1>
 
+
+<fieldset>
+  <legend><%=t "Game in Repository" %>:</legend>
+  <% @user.repository_games.each do |game| %></br>
+	<%= link_to game.name, game %>
+  <% end %>
+</fieldset>
+
+<fieldset>
+  <legend><%=t "Game in Wishlist" %>:</legend>
+  <% @user.wishlist_games.each do |game| %></br>
+	<%= link_to game.name, game %>
+  <% end %>
+</fieldset>
+

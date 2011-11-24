@@ -21,8 +21,12 @@ Games4trade::Application.routes.draw do
   match '/help',    :to => 'pages#help'
 
   root :to => 'pages#home'
-
-  resources :users
+  
+  resources :users do
+    member do
+      get :repository, :wishlist
+    end
+  end
   resources :games
 
   match '/signup',  :to => 'users#new'

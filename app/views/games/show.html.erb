@@ -16,6 +16,32 @@
 
 </h2>
 
+<h3>
+  <%=t :review %>:
+  <%= @game.review %></br>
+</h3>
+
+
+<fieldset>
+  <legend><%=t "Who has this game in its Repository" %>:</legend>
+  <% @game.repository_users.each do |user| %></br>
+	<%= gravatar_for user, :size => 30 %>
+	<%= link_to user.name, user %>
+	<%= user.email %>
+  <% end %>
+</fieldset>
+
+<fieldset>
+  <legend><%=t "Who has this game in its Wishlist" %>:</legend>
+  <% @game.wishlist_users.each do |user| %></br>
+	<%= gravatar_for user, :size => 30 %>
+	<%= link_to user.name, user %>
+	<%= user.email %>
+  <% end %>
+</fieldset>
+
+
+
 <% if signed_in? && current_user.admin? %>
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <% end %>

@@ -1,4 +1,4 @@
-<h1><%=t "All games"%></h1>
+<h1><%= @h1title %></h1>
 
 <%= form_tag games_path, :method => 'get', :id => "games_search" do %>
   <p>
@@ -7,7 +7,7 @@
   </p>
 <% end %>
 
-<%= will_paginate %>
+<%= will_paginate @games %>
 <table>
   <tr>
     <th></th>
@@ -15,9 +15,13 @@
     <th></th>
     <th></th>
     <th></th>
-	<% if signed_in? && current_user.admin? %>
+	<% if signed_in? %>
     <th></th>
     <th></th>
+	<% if current_user.admin? %>
+    <th></th>
+    <th></th>
+	<% end %>
 	<% end %>
   </tr>
 
@@ -28,15 +32,19 @@
 	<td><%= game.media_count %> <%= game.media_type %></td>
     <td><%= game.genre %></td>
     <td><%= link_to t('Show'), game %></td>
-	<% if signed_in? && current_user.admin? %>
+	<% if signed_in? %>
+    <td><%= "in Repo" if current_user.hasRepositoryGame?(game) %></td>
+    <td><%= "in Wish" if current_user.hasWishlistGame?(game) %></td>
+	<% if current_user.admin? %>
     <td><%= link_to t('Edit'), edit_game_path(game) %></td>
     <td><%= link_to t('Destroy'), game, confirm: 'Are you sure?', method: :delete %></td>
+	<% end %>
 	<% end %>
   </tr>
 <% end %>
 </table>
 
-<%= will_paginate %>
+<%= will_paginate @games %>
 <br />
 
 <% if signed_in? && current_user.admin? %>
