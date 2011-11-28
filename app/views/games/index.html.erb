@@ -33,8 +33,22 @@
     <td><%= game.genre %></td>
     <td><%= link_to t('Show'), game %></td>
 	<% if signed_in? %>
-    <td><%= "in Repo" if current_user.hasRepositoryGame?(game) %></td>
-    <td><%= "in Wish" if current_user.hasWishlistGame?(game) %></td>
+    <td>
+<% if current_user.hasRepositoryGame?(game) %>
+    <%= t("In Repository") %>
+	<%= link_to t('x'), destroy_repository_item_path(game)%>
+<% else %>
+	<%= link_to t('Add to Repository'), create_repository_item_path(game)%>
+<% end %>
+	</td>
+    <td>
+<% if current_user.hasWishlistGame?(game) %>
+    <%= t("In Wishlist") %>
+	<%= link_to t('x'), destroy_wishlist_item_path(game)%>
+<% else %>
+	<%= link_to t('Add to Wishlist'), create_wishlist_item_path(game)%>
+<% end %>
+	</td>
 	<% if current_user.admin? %>
     <td><%= link_to t('Edit'), edit_game_path(game) %></td>
     <td><%= link_to t('Destroy'), game, confirm: 'Are you sure?', method: :delete %></td>

@@ -2,7 +2,7 @@ class WishlistItemsController < ApplicationController
   before_filter :authenticate
 
   def create
-    @game = Game.find(params[:wishlist_item][:game_id])
+    @game = Game.find(params[:id])
     current_user.newWishlistGame!(@game)
     respond_to do |format|
       format.html { redirect_to @game }

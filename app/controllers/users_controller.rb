@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update, :destroy, :show]
-  before_filter :correct_user, :only => [:edit, :update]
-  before_filter :admin_user,   :only => :destroy
+  before_filter :authenticate, :only => [:index, :edit, :update, :destroy, :show, :wishlist, :repository, :admin]
+  before_filter :correct_user, :only => [:edit, :update, :wishlist, :repository]
+  before_filter :admin_user,   :only => [:destroy, :admin]
   
   # GET /users
   # GET /users.json
@@ -102,5 +102,19 @@ class UsersController < ApplicationController
     @games = @user.repository_games.paginate(:page => params[:page])
     render 'games/index'
   end
+  
+  def admin
+    @user = User.find(params[:id])
+	respond_to do |format|
+      if @user.toggleAdmin!
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  	
   
 end

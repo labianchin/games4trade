@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123003703) do
+ActiveRecord::Schema.define(:version => 20111204193636) do
 
   create_table "games", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(:version => 20111123003703) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sells", :force => true do |t|
+    t.integer  "repository_item_id"
+    t.integer  "buyer_id"
+    t.string   "description"
+    t.float    "value"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sells", ["buyer_id"], :name => "index_sells_on_buyer_id"
+  add_index "sells", ["repository_item_id"], :name => "index_sells_on_repository_item_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

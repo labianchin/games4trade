@@ -1,4 +1,4 @@
-<% @user ||= current_user %>
+<% @user ||= current_user if @user.nil?%>
 <div class="stats">
   <table summary="User stats">
     <tr>
@@ -18,4 +18,12 @@
       </td>
     </tr>
   </table>
+  <h3><%=t "Total Reputation Points: "%><%= @user.points %></h3>
+  <ul>
+  <% @user.reputations.each do |reputation| %>
+	  <li>
+	  <b><%= reputation.reputer.name %>: </b>(<%= reputation.points %>): <%= reputation.review %>
+	  </li>
+  <% end %>
+  </ul>
 </div>

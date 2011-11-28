@@ -19,6 +19,8 @@
       <% if current_user.admin? %>
 	  | <%= link_to t("delete"), user, :method => :delete, :confirm => "You sure?",
 		                            :title => "Delete #{user.name}" %>
+      | <%= link_to (!user.admin? ? t("promote") : t("unpromote")), :controller => "users", :action => :admin, :id => user, :confirm => "You sure?",
+        	:title => "Delete #{user.name}" %>
 	  <% end %>
     </li>
   <% end %>

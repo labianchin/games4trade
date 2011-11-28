@@ -2,7 +2,7 @@ class RepositoryItemsController < ApplicationController
   before_filter :authenticate
 
   def create
-    @game = Game.find(params[:repository_item][:game_id])
+    @game = Game.find(params[:id])
     current_user.newRepositoryGame!(@game)
     respond_to do |format|
       format.html { redirect_to @game }

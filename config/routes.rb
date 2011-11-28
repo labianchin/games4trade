@@ -24,15 +24,25 @@ Games4trade::Application.routes.draw do
   
   resources :users do
     member do
-      get :repository, :wishlist
+      get :repository, :wishlist, :admin
     end
   end
+  
+  
   resources :games
+  resources :repository_items
+  resources :wishlist_items
 
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/sessions',  :to => 'sessions#create'
   match '/signout', :to => 'sessions#destroy'
+  
+  
+  match '/repository/destroy/:id',  :to => 'repository_items#destroy', :as => :destroy_repository_item
+  match '/repository/:id',  :to => 'repository_items#create', :as => :create_repository_item
+  match '/wishlist/destroy/:id',  :to => 'wishlist_items#destroy', :as => :destroy_wishlist_item
+  match '/wishlist/:id',  :to => 'wishlist_items#create', :as => :create_wishlist_item
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

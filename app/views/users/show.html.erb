@@ -1,20 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1>
+<h2>
   <%= gravatar_image_tag @user.email %>
-  <%= @user.name %>
+  <%= @user.name %></br>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
+  <%=t :name %>:
+  <%= @user.name %></br>
+  <%=t :email %>:
+  <%= @user.email %></br>
+  <%=t :city %>:
+  <%= @user.city %></br>
+  <%=t :state %>:
+  <%= @user.state %></br>
+  <%=t :admin if @user.admin? %>
+</h2>
 
-<p>
-  <b>Nickname:</b>
-  <%= @user.nickname %>
-</p>
-
-</h1>
+<fieldset>
+  <legend><%=t "Stats" %>:</legend>
+  <%= render 'shared/stats' %>
+</fieldset>
 
 
 <fieldset>
@@ -30,4 +34,5 @@
 	<%= link_to game.name, game %>
   <% end %>
 </fieldset>
+
 

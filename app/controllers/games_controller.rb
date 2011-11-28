@@ -82,4 +82,6 @@ class GamesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  
 end

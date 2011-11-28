@@ -7,6 +7,14 @@ namespace :db do
     make_repositories
     make_wishlists
     make_reputations
+    make_sells
+  end
+  desc "Reset all"
+  task :redo => :environment do
+    #Rake::Task['db:destroy'].invoke
+    Rake::Task['db:create'].invoke
+    Rake::Task['db:migrate'].invoke
+    Rake::Task['db:populate'].invoke
   end
 end
 
@@ -17,13 +25,11 @@ def make_users
                        :password_confirmation => "foobar")
   admin.toggle!(:admin)
   99.times do |n|
-    name  = Faker::Name.name
-    email = "example-#{n+1}@railstutorial.org"
-    password  = "password"
-    User.create!(:name => name,
-                 :email => email,
-                 :password => password,
-                 :password_confirmation => password,
+    User.create!(:name => Faker::Name.name,
+    			 :nickname => "example-#{n+1}",
+                 :email => "example-#{n+1}@railstutorial.org",
+                 :password => "password",
+                 :password_confirmation => "password",
                  :city => Faker::Address.city,
                  :state => Faker::Address.state,
                  :street => Faker::Address.street_name,
@@ -52,4 +58,13 @@ end
 
 def make_reputations
   (1..200).each { Reputation.create!(:reputer_id => rand(50)+1, :reputed_id => rand(50)+1, :review => Faker::Lorem.sentence(3), :points => rand(3)-1) }
+end
+
+def make_sells
+ repositoryItems = RepositoryItem.all
+ repositoryItems.each { |repositoryItem| 
+ 	repositoryItem.sellItem!(:description => Faker::Lorem.sentence(3), :value => 5.0) 		
+ 	repositoryItem.sell.description = Faker::Lorem.sentence(3)
+ 	repositoryItem.sell.value = 5.0
+ }
 end

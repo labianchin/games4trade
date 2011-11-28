@@ -28,6 +28,10 @@
 	<%= gravatar_for user, :size => 30 %>
 	<%= link_to user.name, user %>
 	<%= user.email %>
+	<% sell = user.findSell(@game) %>
+	<% if (!sell.nil?) %>
+	<%= sell.value %>
+	<% end %>
   <% end %>
 </fieldset>
 

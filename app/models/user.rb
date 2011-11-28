@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :repository_games, :through => :repository_items, :source => :game
   has_many :wishlist_games, :through => :wishlist_items, :source => :game
   
+  
+  has_many :buys, :class_name => "Sell", :dependent => :destroy, :foreign_key => "buyer_id"
+  has_many :sells, :through => :repository_items, :source => :sell
   has_many :reputations, :dependent => :destroy, :foreign_key => "reputed_id"
   
   
@@ -78,7 +81,14 @@ class User < ActiveRecord::Base
   	wishlist_items.find_by_game_id(game.id).destroy
   end
   
+  def toggleAdmin!
+  	self.toggle!(:admin)
+  end
   
+  def findSell(game)
+  	item = repository_items.find_by_game_id(game.id)
+  	item.sell unless item.nil?
+  end
   
   private
 	def encrypt_password
